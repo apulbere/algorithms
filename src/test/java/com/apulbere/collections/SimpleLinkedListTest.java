@@ -27,8 +27,9 @@ public class SimpleLinkedListTest {
         var linkedList = new SimpleLinkedList<String>();
         linkedList.append("T");
         linkedList.prepend("P");
+        linkedList.prepend("O");
 
-        assertEquals(List.of("P", "T"), linkedList.toCollection(ArrayList::new));
+        assertEquals(List.of("O", "P", "T"), linkedList.toCollection(ArrayList::new));
     }
 
     @Test

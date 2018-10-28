@@ -35,8 +35,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
      * O(1)
      */
     public void prepend(T value) {
-        Node<T> temp = head;
-        head = new Node<>(value, temp);
+        head = new Node<>(value, head);
     }
 
     /**
