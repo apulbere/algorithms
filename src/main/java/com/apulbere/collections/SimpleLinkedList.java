@@ -81,7 +81,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
      */
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
+        return new Iterator<>() {
             private Node<T> current = head;
 
             @Override
