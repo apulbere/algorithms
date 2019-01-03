@@ -1,6 +1,5 @@
-package com.apulbere.collections;
+package com.apulbere.collections.tree;
 
-import com.apulbere.collections.BinarySearchTree.Node;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -40,11 +39,27 @@ public class BinarySearchTreeTest {
 
         var inorder = List.of(3, 4, 5, 10, 15, 27);
         assertEquals(inorder, bst.inorder());
+        assertEquals(inorder, bst.inorder2());
 
         var preorder = List.of(5, 4, 3, 15, 10, 27);
         assertEquals(preorder, bst.preorder());
 
         var postOrder = List.of(3, 4, 10, 27, 15, 5);
         assertEquals(postOrder, bst.postorder());
+    }
+
+    @Test
+    void count() {
+        var values = List.of('A', 'C', 'N', 'L', 'I', 'A', 'T');
+        var bst = new BinarySearchTree<>(values);
+
+        assertEquals(values.size(), bst.countIterative());
+        assertEquals(values.size(), bst.countRecursive());
+
+        var numbers = List.of(56, 34, 67, 12, 40, 41);
+        var numbBst = new BinarySearchTree<>(numbers);
+
+        assertEquals(2, numbBst.countFullNodes());
+        assertEquals(3, numbBst.countLeafs());
     }
 }
