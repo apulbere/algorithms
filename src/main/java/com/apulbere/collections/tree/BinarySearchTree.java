@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
 @ToString
 @NoArgsConstructor
@@ -51,7 +52,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         if(res == 0) {
             return node;
         }
-        return res < 0 ? findRecursive(value, node.left) : findRecursive(value, node.right);
+        return findRecursive(value, res < 0 ? node.left : node.right);
     }
 
     public List<T> inorder() {
@@ -144,5 +145,49 @@ public class BinarySearchTree<T extends Comparable<T>> {
                 count++;
             }
         }
+    }
+
+    /**
+     * tree with only a node (the root) has a height of zero -- Wiki
+     */
+    public int height() {
+        return heightRecursive(root);
+    }
+
+    private int heightRecursive(Node node) {
+        if(node == null) {
+            return 0;
+        }
+        return Math.max(heightRecursive(node.right), heightRecursive(node.left)) + 1;
+    }
+
+    public T min() {
+        return root == null ? null : traverseTillNull(root, node -> node.left);
+    }
+
+    public T min2() {
+        return new AbstractTraversal<>(new ValueAccumulator<T>()).root().left().traverse(root).value;
+    }
+
+    public T max() {
+        return root == null ? null : traverseTillNull(root, node -> node.right);
+    }
+
+    public T max2() {
+        return new AbstractTraversal<>(new ValueAccumulator<T>()).root().right().traverse(root).value;
+    }
+
+    private static class ValueAccumulator<T> implements TraversalAccumulator<T> {
+        T value;
+
+        @Override
+        public void add(Node<T> node) {
+            value = node.value;
+        }
+    }
+
+    private T traverseTillNull(Node<T> node, Function<Node<T>, Node<T>> nodeFunction) {
+        var next = nodeFunction.apply(node);
+        return next == null ? node.value : traverseTillNull(next, nodeFunction);
     }
 }

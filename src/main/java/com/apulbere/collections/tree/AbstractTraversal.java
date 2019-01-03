@@ -8,15 +8,15 @@ class AbstractTraversal<A extends TraversalAccumulator<T>, T> {
     private A accumulator;
     private List<Consumer<Node<T>>> operations = new ArrayList<>(3);
 
+    AbstractTraversal(A accumulator) {
+        this.accumulator = accumulator;
+    }
+
     private void traverseRecursive(Node<T> node) {
         if(node == null) {
             return;
         }
         operations.forEach(op -> op.accept(node));
-    }
-
-    public AbstractTraversal(A accumulator) {
-        this.accumulator = accumulator;
     }
 
     AbstractTraversal<A, T> left() {
