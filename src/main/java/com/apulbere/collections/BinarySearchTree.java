@@ -52,23 +52,14 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return res < 0 ? findRecursive(value, node.left) : findRecursive(value, node.right);
     }
 
-    /**
-     * Left, Root, Right
-     */
     public List<T> inorder() {
         return new Traversal<T>().left().root().right().traverse(root);
     }
 
-    /**
-     * Root, Left, Right
-     */
     public List<T> preorder() {
         return new Traversal<T>().root().left().right().traverse(root);
     }
 
-    /**
-     * Left, Right, Root
-     */
     public List<T> postorder() {
         return new Traversal<T>().left().right().root().traverse(root);
     }
