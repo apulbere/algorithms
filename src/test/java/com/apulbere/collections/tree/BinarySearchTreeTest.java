@@ -94,4 +94,55 @@ public class BinarySearchTreeTest {
         assertEquals(0, (int) seqBst.min());
         assertEquals(0, (int) seqBst.min2());
     }
+
+    @Test
+    void deleteLeaf() {
+        var values1 = List.of(5, 6, 2);
+        var bst1 = new BinarySearchTree<>(values1);
+        var expectedBst1 = new BinarySearchTree<>(new Node<>(null, new Node<>(6), 5));
+        bst1.delete(2);
+        assertEquals(expectedBst1, bst1);
+
+        bst1.delete(6);
+        assertEquals(new BinarySearchTree<>(new Node<>(5)), bst1);
+
+        bst1.delete(5);
+        assertEquals(new BinarySearchTree<>(), bst1);
+    }
+
+    @Test
+    void deleteHalfFullNode() {
+        var values1 = List.of(43, 23, 56, 67, 1);
+        var bst1 = new BinarySearchTree<>(values1);
+        var n23 = new Node<>(new Node<>(1), null, 23);
+        var n43 = new Node<>(n23, new Node<>(67), 43);
+        var expectedBst1 = new BinarySearchTree<>(n43);
+        bst1.delete(56);
+        assertEquals(expectedBst1, bst1);
+
+        var expectedBst2 = new BinarySearchTree<>(new Node<>(new Node<>(1), new Node<>(67), 43));
+        bst1.delete(23);
+        assertEquals(expectedBst2, bst1);
+    }
+
+    @Test
+    void deleteFullNode() {
+        var values1 = List.of(67, 22, 89, 70, 90);
+        var n70 = new Node<>(null, new Node<>(90), 70);
+        var n67 = new Node<>(new Node<>(22), n70, 67);
+        var expectedBst1 = new BinarySearchTree<>(n67);
+        var bst1 = new BinarySearchTree<>(values1);
+        bst1.delete(89);
+        assertEquals(expectedBst1, bst1);
+    }
+
+    @Test
+    void deleteRoot() {
+        var values2 = List.of(50, 30, 35, 60);
+        var expectedBst2 = new BinarySearchTree<>(new Node<>(new Node<>(30), new Node<>(60), 35));
+        var bst2 = new BinarySearchTree<>(values2);
+        bst2.delete(50);
+        assertEquals(expectedBst2, bst2);
+        assertEquals(values2.stream().filter(v -> v != 50).sorted().collect(toList()), bst2.inorder());
+    }
 }

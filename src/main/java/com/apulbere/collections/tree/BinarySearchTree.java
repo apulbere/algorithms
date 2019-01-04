@@ -190,4 +190,44 @@ public class BinarySearchTree<T extends Comparable<T>> {
         var next = nodeFunction.apply(node);
         return next == null ? node.value : traverseTillNull(next, nodeFunction);
     }
+
+    public void delete(T value) {
+        root = deleteRecursive(root, value);
+    }
+
+    private Node<T> deleteRecursive(Node<T> node, T value) {
+        if (node == null) {
+            return null;
+        }
+        int res = value.compareTo(node.value);
+        if(res == 0) {
+            if (node.left == null && node.right == null) {
+                return null;
+            }
+            if (node.right == null) {
+                return node.left;
+            }
+            if (node.left == null) {
+                return node.right;
+            }
+            T smallestValue = traverseLeft(node.left);
+            node.value = smallestValue;
+            node.left = deleteRecursive(node.left, smallestValue);
+            return node;
+
+        }
+        if (res < 0) {
+            node.left = deleteRecursive(node.left, value);
+            return node;
+        }
+        node.right = deleteRecursive(node.right, value);
+        return node;
+    }
+
+    private T traverseLeft(Node<T> node) {
+        if(node.left == null && node.right == null) {
+            return node.value;
+        }
+        return traverseLeft(node.left != null ? node.left : node.right);
+    }
 }
