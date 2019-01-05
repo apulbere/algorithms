@@ -1,14 +1,17 @@
 package com.apulbere.collections;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class HeapTest {
 
@@ -24,10 +27,51 @@ public class HeapTest {
 
     @RepeatedTest(11)
     void min() {
-        var randomNumbers = IntStream.generate(() -> (int)(Math.random() * 100)).limit(31).boxed().collect(toList());
+        var randomNumbers = random().limit(randomBetween(1, 13)).collect(toList());
         var heap = new Heap<Integer>();
         randomNumbers.forEach(heap::add);
 
-        assertEquals(Collections.min(randomNumbers), heap.min());
+        assertEquals(Collections.min(randomNumbers), heap.min(), "for numbers: " + randomNumbers + " and " + heap);
+    }
+
+    @RepeatedTest(23)
+    void removeMin() {
+        var randomNumbers = random().limit(randomBetween(2, 21)).collect(toList());
+
+        var heap = new Heap<Integer>();
+        randomNumbers.forEach(heap::add);
+        var copyHeap = new Heap<Integer>();
+        randomNumbers.forEach(copyHeap::add);
+
+        heap.removeMin();
+        randomNumbers.remove(Collections.min(randomNumbers));
+
+        assertEquals(Collections.min(randomNumbers), heap.min(),
+                "for numbers: " + randomNumbers + "\noriginal heap: " + heap + "\naltered heap: " + heap);
+    }
+
+    @Test
+    @DisplayName("remove min till there are no more elements in heap")
+    void removeMin2() {
+        var numbers = List.of(89, 28, 69);
+        var heap = new Heap<Integer>();
+        numbers.forEach(heap::add);
+
+        heap.removeMin();
+        assertEquals(69, (int) heap.min());
+
+        heap.removeMin();
+        assertEquals(89, (int) heap.min());
+
+        heap.removeMin();
+        assertNull(heap.min());
+    }
+
+    private Stream<Integer> random() {
+        return IntStream.generate(() -> randomBetween(0, 100)).boxed();
+    }
+
+    private int randomBetween(int min, int max) {
+        return min + (int)(Math.random() * ((max - min) + 1));
     }
 }
