@@ -40,38 +40,28 @@ public class Heap<T extends Comparable<T>> {
             int last = data.size() - 1;
             data.set(0, data.get(last));
             data.remove(last);
-            shiftDown(0);
-        }
-    }
-
-    private void shiftDown(int i) {
-        int last = data.size() - 1;
-        T left = last <= i + 1 ? null : data.get(i + 1);
-        T right = last <= i + 2 ? null : data.get(i + 2);
-        if (left != null || right != null) {
-            T current = data.get(i);
-            if(left != null && right == null) {
-                if(left.compareTo(current) < 0) {
-                    shift(i, i + 1);
-                }
-            } else if(left == null) {
-                if(right.compareTo(current) < 0) {
-                    shift(i, i + 2);
-                }
-            } else {
-                if(left.compareTo(right) < 0) {
-                    shift(i, i + 1);
-                } else {
-                    shift(i, i + 2);
-                }
+            if(!data.isEmpty()) {
+                shiftDown();
             }
-            shiftDown(i + 1);
         }
     }
 
-    private void shift(int i, int j) {
-        T temp = data.get(i);
-        data.set(i, data.get(j));
-        data.set(j, temp);
+    private void shiftDown() {
+        T tmp = data.get(0);
+        int parent = 0;
+        for(int child = 1; parent * 2 + 1 < data.size(); parent = child, child = child * 2 + 1) {
+
+            if(child + 1 < data.size()
+                    && data.get(child).compareTo(data.get(child + 1)) > 0) {
+                child++;
+            }
+
+            if(tmp.compareTo(data.get(child)) > 0) {
+                data.set(parent, data.get(child));
+            } else {
+                break;
+            }
+        }
+        data.set(parent, tmp);
     }
 }

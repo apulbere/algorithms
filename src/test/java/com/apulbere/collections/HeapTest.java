@@ -47,21 +47,19 @@ public class HeapTest {
         randomNumbers.remove(Collections.min(randomNumbers));
 
         assertEquals(Collections.min(randomNumbers), heap.min(),
-                "for numbers: " + randomNumbers + "\noriginal heap: " + heap + "\naltered heap: " + heap);
+                "for numbers: " + randomNumbers + "\noriginal heap: " + copyHeap + "\naltered heap: " + heap);
     }
 
     @Test
     @DisplayName("remove min till there are no more elements in heap")
     void removeMin2() {
-        var numbers = List.of(89, 28, 69);
-        var heap = new Heap<Integer>();
-        numbers.forEach(heap::add);
+        var heap = new Heap<>(List.of(17, 23, 54));
 
         heap.removeMin();
-        assertEquals(69, (int) heap.min());
+        assertEquals(23, (int) heap.min());
 
         heap.removeMin();
-        assertEquals(89, (int) heap.min());
+        assertEquals(54, (int) heap.min());
 
         heap.removeMin();
         assertNull(heap.min());
