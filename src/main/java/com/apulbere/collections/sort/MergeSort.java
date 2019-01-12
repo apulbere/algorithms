@@ -1,6 +1,9 @@
 package com.apulbere.collections.sort;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
@@ -30,27 +33,49 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
     }
 
     private List<T> merge(List<T> left, List<T> right) {
-        int leftIndex = 0, rightIndex = 0;
         var result = new ArrayList<T>(left.size() + right.size());
-        while(leftIndex < left.size() && rightIndex < right.size()) {
-            T t1 = left.get(leftIndex);
-            T t2 = right.get(rightIndex);
-            if(t1.compareTo(t2) <= 0) {
-                result.add(t1);
-                leftIndex++;
+        var leftIterator = new PeekingIterator<T>(left.iterator());
+        var rightIterator = new PeekingIterator<T>(right.iterator());
+
+        while(leftIterator.hasNext() && rightIterator.hasNext()) {
+            if(leftIterator.peek().compareTo(rightIterator.peek()) <= 0) {
+                result.add(leftIterator.next());
             } else {
-                result.add(t2);
-                rightIndex++;
+                result.add(rightIterator.next());
             }
         }
-        while(leftIndex < left.size()) {
-            result.add(left.get(leftIndex));
-            leftIndex++;
-        }
-        while(rightIndex < right.size()) {
-            result.add(right.get(rightIndex));
-            rightIndex++;
-        }
+        leftIterator.forEachRemaining(result::add);
+        rightIterator.forEachRemaining(result::add);
         return result;
+    }
+
+    @RequiredArgsConstructor
+    private class PeekingIterator<E> implements Iterator<E> {
+        private final Iterator<E> iterator;
+        private E peek;
+
+        E peek() {
+            return peek == null ? peek = iterator.next() : peek;
+        }
+
+        @Override
+        public E next() {
+            if (peek != null) {
+                E res = peek;
+                peek = null;
+                return res;
+            } else {
+                return iterator.next();
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (peek != null) {
+                return true;
+            } else {
+                return iterator.hasNext();
+            }
+        }
     }
 }
