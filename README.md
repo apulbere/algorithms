@@ -9,4 +9,5 @@
 * [heap](src/main/java/com/apulbere/collections/Heap.java)
 
 ### Sorting
-* merge [heap](src/main/java/com/apulbere/collections/sort/MergeSort.java)
+* [merge with O(n log n) space complexity](src/main/java/com/apulbere/collections/sort/MergeSort.java)
+* [merge with O(n) space complexity](src/main/java/com/apulbere/collections/sort/MergeSortOnSpaceComplexity.java)

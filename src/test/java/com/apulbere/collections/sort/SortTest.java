@@ -8,7 +8,7 @@ import java.util.ServiceLoader;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SortTest {
@@ -16,9 +16,9 @@ class SortTest {
     @ParameterizedTest
     @MethodSource("sortImplementation")
     void sort(Sort<Integer> sort) {
-        var numbers = random().limit(randomBetween(1, 67)).collect(toList());
+        var numbers = random().limit(randomBetween(1, 67)).collect(toUnmodifiableList());
 
-        var expectedSortedNumbers = numbers.stream().sorted().collect(toList());
+        var expectedSortedNumbers = numbers.stream().sorted().collect(toUnmodifiableList());
         assertEquals(expectedSortedNumbers, sort.sort(numbers), "original numbers: " + numbers);
     }
 

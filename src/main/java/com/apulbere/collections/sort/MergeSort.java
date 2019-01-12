@@ -11,9 +11,12 @@ import static java.util.Collections.emptyList;
 public class MergeSort<T extends Comparable<T>> implements Sort<T> {
 
     /**
-     * best    O(n log(n))
-     * avg     O(n log(n))
-     * worst   O(n log(n))
+     * Performance:
+     *  best    O(n log n)
+     *  avg     O(n log n)
+     *  worst   O(n log n)
+     *
+     * Space complexity: O(n log n)
      */
     @Override
     public List<T> sort(List<T> list) {
