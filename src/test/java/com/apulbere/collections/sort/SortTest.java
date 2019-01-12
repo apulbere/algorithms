@@ -1,5 +1,7 @@
 package com.apulbere.collections.sort;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -20,6 +22,12 @@ class SortTest {
 
         var expectedSortedNumbers = numbers.stream().sorted().collect(toUnmodifiableList());
         assertEquals(expectedSortedNumbers, sort.sort(numbers), "original numbers: " + numbers);
+    }
+
+    @RepeatedTest(23)
+    @DisplayName("merge sort with O(n) space complexity")
+    void sort() {
+        sort(new MergeSortOnSpaceComplexity<>());
     }
 
     private static Iterator<Sort> sortImplementation() {

@@ -1,10 +1,11 @@
 package com.apulbere.collections.sort;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toCollection;
 
 public class MergeSortOnSpaceComplexity<T extends Comparable<T>> implements Sort<T> {
 
@@ -36,27 +37,22 @@ public class MergeSortOnSpaceComplexity<T extends Comparable<T>> implements Sort
         int n1 = middle - left + 1;
         int n2 = right - middle;
 
-        var tempLeft = IntStream.range(0, n1).mapToObj(i -> list.get(left + i)).collect(toList());
-        var tempRight = IntStream.range(0, n2).mapToObj(i -> list.get(middle + 1 + i)).collect(toList());
+        var tempLeft = IntStream.range(0, n1).mapToObj(i -> list.get(left + i)).collect(toCollection(LinkedList::new));
+        var tempRight = IntStream.rangeClosed(1, n2).mapToObj(i -> list.get(middle + i)).collect(toCollection(LinkedList::new));
 
-        int i = 0, j = 0, k = left;
-        while(i < n1 && j < n2) {
-            T t1 = tempLeft.get(i);
-            T t2 = tempRight.get(j);
-            if(t1.compareTo(t2) <= 0) {
-                list.set(k, t1);
-                i++;
+        int k = left;
+        for(; !tempLeft.isEmpty() && !tempRight.isEmpty(); k++) {
+            if(tempLeft.peek().compareTo(tempRight.peek()) <= 0) {
+                list.set(k, tempLeft.pop());
             } else {
-                list.set(k, t2);
-                j++;
+                list.set(k, tempRight.pop());
             }
-            k++;
         }
-        while(i < n1) {
-            list.set(k++, tempLeft.get(i++));
+        while(!tempLeft.isEmpty()) {
+            list.set(k++, tempLeft.pop());
         }
-        while(j < n2) {
-            list.set(k++, tempRight.get(j++));
+        while(!tempRight.isEmpty()) {
+            list.set(k++, tempRight.pop());
         }
     }
 }
