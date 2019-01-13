@@ -1,4 +1,7 @@
 ## About
+![build status](https://travis-ci.org/apulbere/data-structures.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/apulbere/data-structures/badge.svg)](https://coveralls.io/github/apulbere/data-structures)
+
 
 ### Data Structures
 * [simple linked list](src/main/java/com/apulbere/collections/SimpleLinkedList.java)
