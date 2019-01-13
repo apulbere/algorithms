@@ -1,0 +1,9 @@
+language: java
+jdk:
+  - openjdk10
+sudo: false
+cache:
+  directories:
+    - $HOME/.gradle
+after_success:
+  - ./gradlew test jacocoTestReport coveralls
