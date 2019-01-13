@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0-RC1'
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2'
     }
 }
 
@@ -13,7 +13,7 @@ plugins {
 }
 
 apply plugin: "jacoco"
-apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'com.github.kt3k.coveralls'
 
 group 'com.apulbere'
 version '1.0-SNAPSHOT'
@@ -33,9 +33,8 @@ dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.4.0-M1'
 }
 
-jacoco {
-    toolVersion = '0.8.2'
-    applyTo junitPlatformTest
+test {
+    useJUnitPlatform()
 }
 
 jacocoTestReport {
