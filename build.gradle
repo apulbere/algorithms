@@ -1,19 +1,7 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2'
-    }
-}
-
 plugins {
     id 'java'
     id 'jacoco'
 }
-
-apply plugin: "jacoco"
-apply plugin: 'com.github.kt3k.coveralls'
 
 group 'com.apulbere'
 version '1.0-SNAPSHOT'
@@ -31,15 +19,4 @@ dependencies {
 
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.4.0-M1'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.4.0-M1'
-}
-
-test {
-    useJUnitPlatform()
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
 }
