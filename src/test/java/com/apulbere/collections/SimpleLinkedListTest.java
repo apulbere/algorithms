@@ -1,5 +1,7 @@
 package com.apulbere.collections;
 
+import com.apulbere.collections.SimpleLinkedList.Node;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,10 +10,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SimpleLinkedListTest {
+class SimpleLinkedListTest {
 
     @Test
-    public void shouldInsertAtTheEnd() {
+    void shouldInsertAtTheEnd() {
         var linkedList = new SimpleLinkedList<String>();
 
         linkedList.append("A");
@@ -23,7 +25,7 @@ public class SimpleLinkedListTest {
     }
 
     @Test
-    public void shouldInsertAtTheBeginning() {
+    void shouldInsertAtTheBeginning() {
         var linkedList = new SimpleLinkedList<String>();
         linkedList.append("T");
         linkedList.prepend("P");
@@ -33,7 +35,7 @@ public class SimpleLinkedListTest {
     }
 
     @Test
-    public void shouldNotFailForEmptyCase() {
+    void shouldNotFailForEmptyCase() {
         var linkedList = new SimpleLinkedList<String>();
 
         assertEquals(0L, linkedList.size());
@@ -41,7 +43,7 @@ public class SimpleLinkedListTest {
     }
 
     @Test
-    public void search() {
+    void search() {
         var linkedList = new SimpleLinkedList<String>(List.of("Z", "Y", "Z"));
 
         assertTrue(linkedList.contains("Z"));
@@ -51,12 +53,12 @@ public class SimpleLinkedListTest {
     }
 
     @Test
-    public void deleteOnAnEmptyList() {
+    void deleteOnAnEmptyList() {
         new SimpleLinkedList<String>().delete("67");
     }
 
     @Test
-    public void delete() {
+    void delete() {
         var linkedList = new SimpleLinkedList<String>(List.of("Y", "P"));
         linkedList.delete("P");
         linkedList.delete("U");
@@ -66,5 +68,30 @@ public class SimpleLinkedListTest {
         secondLinkedList.delete("Y");
         linkedList.delete("OPP");
         assertEquals(Collections.emptyList(), Collections.emptyList());
+    }
+
+    @Test
+    void findMiddle() {
+        var linkedList = new SimpleLinkedList<>(List.of("T", "C", "A"));
+        assertEquals(new Node<>("C", new Node<>("A")), linkedList.findMiddle());
+    }
+
+    @Test
+    @DisplayName("find middle in an odd sized linked list")
+    void findMiddleInEvenSizedLinkedList() {
+        var linkedList = new SimpleLinkedList<>(List.of(5, 7, 9, 8));
+
+        assertEquals(7, linkedList.findMiddle().data);
+    }
+
+    @Test
+    void copyConstructor() {
+        var firstLinkedList = new SimpleLinkedList<>(List.of("I", "L", "A"));
+        var copyLinkedList = new SimpleLinkedList<>(firstLinkedList);
+
+        assertEquals(firstLinkedList, copyLinkedList);
+
+        firstLinkedList.append("T");
+        assertNotEquals(firstLinkedList, copyLinkedList);
     }
 }

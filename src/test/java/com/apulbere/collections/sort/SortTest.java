@@ -1,11 +1,14 @@
 package com.apulbere.collections.sort;
 
+import com.apulbere.collections.SimpleLinkedList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.ServiceLoader;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -28,6 +31,30 @@ class SortTest {
     @DisplayName("merge sort with O(n) space complexity")
     void sort() {
         sort(new MergeSortOnSpaceComplexity<>());
+    }
+
+
+    @Test
+    @DisplayName("merge sort in a linked list does not modify original list")
+    void mergeSortLinkedListUnchanged() {
+        var numbers = List.of(9, 6, 7);
+        var originalLinkedList = new SimpleLinkedList<>(numbers);
+        var copyOfOriginalLinkedList = new SimpleLinkedList<>(originalLinkedList);
+        var expectedLinkedList = new SimpleLinkedList<>(numbers.stream().sorted().collect(toUnmodifiableList()));
+
+        assertEquals(expectedLinkedList, new MergeSortForLinkedList<Integer>().sort(originalLinkedList));
+
+        assertEquals(copyOfOriginalLinkedList, originalLinkedList, "original linked list remains unchanged");
+    }
+
+    @RepeatedTest(7)
+    @DisplayName("merge sort in a linked list")
+    void mergeSortLinkedList() {
+        var numbers = random().limit(randomBetween(1, 67)).collect(toUnmodifiableList());
+        var originalLinkedList = new SimpleLinkedList<>(numbers);
+        var expectedLinkedList = new SimpleLinkedList<>(numbers.stream().sorted().collect(toUnmodifiableList()));
+
+        assertEquals(expectedLinkedList, new MergeSortForLinkedList<Integer>().sort(originalLinkedList));
     }
 
     private static Iterator<Sort> sortImplementation() {

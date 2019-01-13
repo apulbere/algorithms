@@ -1,19 +1,26 @@
 package com.apulbere.collections;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Supplier;
 import java.util.stream.StreamSupport;
 
+@ToString
+@EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class SimpleLinkedList<T> implements Iterable<T> {
+    @Getter
     private Node<T> head;
 
     public SimpleLinkedList(Collection<T> values) {
         values.forEach(this::append);
+    }
+
+    public SimpleLinkedList(SimpleLinkedList<T> linkedList) {
+        head = linkedList.head.copy();
     }
 
     /**
@@ -44,7 +51,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
      * O(1) only when you have a reference to the node you want to remove
      */
     public void delete(T value) {
-        if(head != null) {
+        if(!isEmpty()) {
             Node<T> current = head;
             Node<T> prev = null;
             while (current != null && !current.data.equals(value)) {
@@ -103,13 +110,44 @@ public class SimpleLinkedList<T> implements Iterable<T> {
         return collection;
     }
 
+    public static <E> Node<E> findMiddle(Node<E> node) {
+        if(node == null) {
+            return null;
+        } else {
+            var fast = node.next;
+            var slow = node;
+            while(fast != null && fast.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
+    }
+
+    public Node<T> findMiddle() {
+        return findMiddle(head);
+    }
+
+    boolean isEmpty() {
+        return head == null;
+    }
+
+    @Data
     @AllArgsConstructor
-    private static class Node<T> {
+    public static class Node<T> {
         T data;
         Node<T> next;
 
         Node(T data) {
             this.data = data;
+        }
+
+        public Node<T> copy() {
+            return copy(this);
+        }
+
+        private Node<T> copy(Node<T> node) {
+            return node == null ? null : new Node<>(node.data, copy(node.next));
         }
     }
 }
