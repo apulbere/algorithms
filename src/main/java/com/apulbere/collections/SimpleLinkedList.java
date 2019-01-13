@@ -110,22 +110,8 @@ public class SimpleLinkedList<T> implements Iterable<T> {
         return collection;
     }
 
-    public static <E> Node<E> findMiddle(Node<E> node) {
-        if(node == null) {
-            return null;
-        } else {
-            var fast = node.next;
-            var slow = node;
-            while(fast != null && fast.next != null) {
-                fast = fast.next.next;
-                slow = slow.next;
-            }
-            return slow;
-        }
-    }
-
     public Node<T> findMiddle() {
-        return findMiddle(head);
+        return isEmpty() ? null : head.middle();
     }
 
     boolean isEmpty() {
@@ -140,6 +126,16 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 
         Node(T data) {
             this.data = data;
+        }
+
+        public Node<T> middle() {
+            var fast = this.next;
+            var slow = this;
+            while(fast != null && fast.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            return slow;
         }
 
         public Node<T> copy() {

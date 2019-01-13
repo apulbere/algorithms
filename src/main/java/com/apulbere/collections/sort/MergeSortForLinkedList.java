@@ -35,7 +35,7 @@ public class MergeSortForLinkedList<T extends Comparable<T>> {
             return head;
         }
 
-        var middle = SimpleLinkedList.findMiddle(head);
+        var middle = head.middle();
         var nextToMiddle = middle.getNext();
         middle.setNext(null);
         var left = mergeSort(head);
