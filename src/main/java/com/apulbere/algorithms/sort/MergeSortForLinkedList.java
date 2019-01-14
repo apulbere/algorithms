@@ -1,7 +1,7 @@
-package com.apulbere.collections.sort;
+package com.apulbere.algorithms.sort;
 
-import com.apulbere.collections.SimpleLinkedList;
-import com.apulbere.collections.SimpleLinkedList.Node;
+import com.apulbere.algorithms.SimpleLinkedList;
+import com.apulbere.algorithms.SimpleLinkedList.Node;
 
 public class MergeSortForLinkedList<T extends Comparable<T>> {
 

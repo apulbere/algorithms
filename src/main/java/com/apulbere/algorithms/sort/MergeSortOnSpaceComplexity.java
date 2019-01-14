@@ -1,4 +1,4 @@
-package com.apulbere.collections.sort;
+package com.apulbere.algorithms.sort;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

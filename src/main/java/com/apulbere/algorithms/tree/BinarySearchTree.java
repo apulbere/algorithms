@@ -1,4 +1,4 @@
-package com.apulbere.collections.tree;
+package com.apulbere.algorithms.tree;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

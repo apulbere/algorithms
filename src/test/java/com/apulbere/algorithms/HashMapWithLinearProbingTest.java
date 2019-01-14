@@ -1,4 +1,4 @@
-package com.apulbere.collections;
+package com.apulbere.algorithms;
 
 import org.junit.jupiter.api.RepeatedTest;
 

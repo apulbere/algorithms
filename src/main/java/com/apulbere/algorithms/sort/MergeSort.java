@@ -1,4 +1,4 @@
-package com.apulbere.collections.sort;
+package com.apulbere.algorithms.sort;
 
 import lombok.RequiredArgsConstructor;
 

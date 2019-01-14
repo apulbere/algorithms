@@ -1,6 +1,6 @@
-package com.apulbere.collections;
+package com.apulbere.algorithms;
 
-import com.apulbere.collections.SimpleLinkedList.Node;
+import com.apulbere.algorithms.SimpleLinkedList.Node;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

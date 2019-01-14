@@ -1,4 +1,4 @@
-package com.apulbere.collections.tree;
+package com.apulbere.algorithms.tree;
 
 import org.junit.jupiter.api.Test;
 

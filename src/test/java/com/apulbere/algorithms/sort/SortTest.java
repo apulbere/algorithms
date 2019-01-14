@@ -1,6 +1,6 @@
-package com.apulbere.collections.sort;
+package com.apulbere.algorithms.sort;
 
-import com.apulbere.collections.SimpleLinkedList;
+import com.apulbere.algorithms.SimpleLinkedList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
