@@ -114,7 +114,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
         return isEmpty() ? null : head.middle();
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return head == null;
     }
 

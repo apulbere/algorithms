@@ -1,3 +1,4 @@
 com.apulbere.algorithms.sort.MergeSort
 com.apulbere.algorithms.sort.MergeSortOnSpaceComplexity
 com.apulbere.algorithms.sort.QuickSort
+com.apulbere.algorithms.sort.QuickSortMiddlePivot

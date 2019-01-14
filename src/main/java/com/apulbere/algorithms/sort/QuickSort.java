@@ -6,6 +6,12 @@ import java.util.List;
 public class QuickSort<T extends Comparable<T>> implements Sort<T> {
 
     /**
+     *
+     * STEP 1: ick an element, called a pivot, from the array.
+     * STEP 2: Partitioning: reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater
+     *         than the pivot come after it (equal values can go either way). After this partitioning, the pivot is in its final position.
+     * STEP 3: Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values.
+     *
      * Performance:
      *  worst:      O(n^2)
      *  avg:        O(n log n)
@@ -24,11 +30,11 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
         if(low < high) {
             int pi = partition(list, low, high);
             sort(list, low, pi - 1);
-            sort(list, pi + 1, high);
+            sort(list, pi, high); // pi + 1
         }
     }
 
-    private int partition(List<T> list, int low, int high) {
+    protected int partition(List<T> list, int low, int high) {
         T pivot = list.get(high);
         int pi = low;
         for(int i = low; i < high; i++) {
@@ -41,7 +47,7 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
         return pi;
     }
 
-    private void swap(List<T> list, int i, int j) {
+    void swap(List<T> list, int i, int j) {
         T tmp = list.get(i);
         list.set(i, list.get(j));
         list.set(j, tmp);

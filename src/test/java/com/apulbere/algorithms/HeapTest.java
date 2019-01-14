@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class HeapTest {
+class HeapTest {
+
+    private RandomNumbers random = new RandomNumbers();
 
     @Test
     void add() {
@@ -27,7 +27,7 @@ public class HeapTest {
 
     @RepeatedTest(11)
     void min() {
-        var randomNumbers = random().limit(randomBetween(1, 13)).collect(toList());
+        var randomNumbers = random.random().limit(random.randomBetween(2, 14)).collect(toList());
         var heap = new Heap<Integer>();
         randomNumbers.forEach(heap::add);
 
@@ -36,7 +36,7 @@ public class HeapTest {
 
     @RepeatedTest(23)
     void removeMin() {
-        var randomNumbers = random().limit(randomBetween(2, 21)).collect(toList());
+        var randomNumbers = random.random().limit(random.randomBetween(2, 14)).collect(toList());
 
         var heap = new Heap<Integer>();
         randomNumbers.forEach(heap::add);
@@ -63,13 +63,5 @@ public class HeapTest {
 
         heap.removeMin();
         assertNull(heap.min());
-    }
-
-    private Stream<Integer> random() {
-        return IntStream.generate(() -> randomBetween(0, 100)).boxed();
-    }
-
-    private int randomBetween(int min, int max) {
-        return min + (int)(Math.random() * ((max - min) + 1));
     }
 }
