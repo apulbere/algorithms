@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ServiceLoader;
@@ -22,18 +23,22 @@ class SortTest {
     @ParameterizedTest
     @MethodSource("sortImplementation")
     void sort(Sort<Integer> sort) {
-        var numbers = random.randomList();
+        var oddSizeNumbers = List.of(9, 4, 6, 1, 3, 2, 0);
+        var expectedSortedOddSizeNumbers = oddSizeNumbers.stream().sorted().collect(toUnmodifiableList());
+        assertEquals(expectedSortedOddSizeNumbers, sort.sort(oddSizeNumbers), "list with odd size");
 
-        var expectedSortedNumbers = numbers.stream().sorted().collect(toUnmodifiableList());
-        assertEquals(expectedSortedNumbers, sort.sort(numbers), "original numbers: " + numbers);
+        var evenSizeNumbers = List.of(45, 33, 1, 8, 9, 10, 3, 0);
+        var expectedSortedEvenSizeNumbers = evenSizeNumbers.stream().sorted().collect(toUnmodifiableList());
+        assertEquals(expectedSortedEvenSizeNumbers, sort.sort(evenSizeNumbers), "list with even size");
+
+        assertEquals(Collections.emptyList(), sort.sort(Collections.emptyList()), "empty list");
     }
 
-    @RepeatedTest(7)
+    @Test
     @DisplayName("merge sort with O(n) space complexity")
     void sort() {
         sort(new MergeSortOnSpaceComplexity<>());
     }
-
 
     @Test
     @DisplayName("merge sort in a linked list does not modify original list")

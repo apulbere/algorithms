@@ -16,4 +16,4 @@
 * [merge with O(n) space complexity](src/main/java/com/apulbere/algorithms/sort/MergeSortOnSpaceComplexity.java)
 * [merge for linked list](src/main/java/com/apulbere/algorithms/sort/MergeSortForLinkedList.java)
 * [quick sort](src/main/java/com/apulbere/algorithms/sort/QuickSort.java)
-* [quick sort using middle index as pivot of partition](src/main/java/com/apulbere/algorithms/sort/QuickSortMiddlePivot.java)
+* [quick sort using middle index as pivot](src/main/java/com/apulbere/algorithms/sort/QuickSortMiddlePivot.java)
