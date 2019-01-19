@@ -9,11 +9,10 @@ import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class HashMapWithLinearProbingTest {
-
+class HashMapWithLinearProbingTest {
 
     @RepeatedTest(10)
-    public void putAndGet() {
+    void putAndGet() {
         var hashMap = new HashMapWithLinearProbing<String, String>(10);
 
         var strings = generateRandomString().limit(1990).collect(toList());
@@ -23,7 +22,7 @@ public class HashMapWithLinearProbingTest {
     }
 
     @RepeatedTest(10)
-    public void remove() {
+    void remove() {
         var hashMap = new HashMapWithLinearProbing<String, String>(10);
 
         var strings = generateRandomString().limit(1991).collect(toList());

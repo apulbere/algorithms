@@ -26,7 +26,7 @@ public class MergeSortForLinkedList<T extends Comparable<T>> {
      * Space complexity: O(log n)
      */
     public SimpleLinkedList<T> sort(SimpleLinkedList<T> list) {
-        var headCopy = list.getHead().copy();
+        var headCopy = list.isEmpty() ? null : list.getHead().copy();
         return new SimpleLinkedList<>(mergeSort(headCopy));
     }
 
