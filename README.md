@@ -17,3 +17,4 @@
 * [merge for linked list](src/main/java/com/apulbere/algorithms/sort/MergeSortForLinkedList.java)
 * [quick sort](src/main/java/com/apulbere/algorithms/sort/QuickSort.java)
 * [quick sort using middle index as pivot](src/main/java/com/apulbere/algorithms/sort/QuickSortMiddlePivot.java)
+* [insert sort](src/main/java/com/apulbere/algorithms/sort/InsertSort.java)
