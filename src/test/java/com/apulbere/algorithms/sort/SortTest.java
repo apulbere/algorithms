@@ -2,6 +2,8 @@ package com.apulbere.algorithms.sort;
 
 import com.apulbere.algorithms.RandomNumbers;
 import com.apulbere.algorithms.SimpleLinkedList;
+import lombok.ToString;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ServiceLoader;
 
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -61,6 +64,14 @@ class SortTest {
         var expectedLinkedList = new SimpleLinkedList<>(numbers.stream().sorted().collect(toUnmodifiableList()));
 
         assertEquals(expectedLinkedList, new MergeSortForLinkedList<Integer>().sort(originalLinkedList));
+    }
+
+    @Disabled
+    @RepeatedTest(101)
+    void justToBeSure() {
+        var numbers = random.randomList();
+
+        assertEquals(numbers.stream().sorted().collect(toList()), new SelectionSort<Integer>().sort(numbers));
     }
 
     @Test
