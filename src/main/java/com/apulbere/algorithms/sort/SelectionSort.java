@@ -6,6 +6,8 @@ import java.util.List;
 public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
 
     /**
+     * repeatedly find the minimum element from unsorted part and putting it at the beginning
+     *
      * Performance:
      *  best    O(n^2)
      *  avg     O(n^2)
