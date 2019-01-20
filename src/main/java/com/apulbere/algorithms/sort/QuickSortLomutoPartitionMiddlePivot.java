@@ -2,7 +2,7 @@ package com.apulbere.algorithms.sort;
 
 import java.util.List;
 
-public class QuickSortMiddlePivot<T extends Comparable<T>> extends QuickSort<T> {
+public class QuickSortLomutoPartitionMiddlePivot<T extends Comparable<T>> extends QuickSortLomutoPartition<T> {
 
     @Override
     protected int partition(List<T> list, int low, int high) {

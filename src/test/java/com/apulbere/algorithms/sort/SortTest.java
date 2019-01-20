@@ -2,7 +2,6 @@ package com.apulbere.algorithms.sort;
 
 import com.apulbere.algorithms.RandomNumbers;
 import com.apulbere.algorithms.SimpleLinkedList;
-import lombok.ToString;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -78,7 +77,7 @@ class SortTest {
     @DisplayName("quick sort an ordered list using middle index as pivot")
     void quickSortMedianPivotForSortedList() {
         var chars = List.of('A', 'C', 'E', 'T');
-        assertEquals(chars, new QuickSortMiddlePivot<Character>().sort(chars));
+        assertEquals(chars, new QuickSortLomutoPartitionMiddlePivot<Character>().sort(chars));
     }
 
     private static Iterator<Sort> sortImplementation() {

@@ -1,7 +1,7 @@
 com.apulbere.algorithms.sort.MergeSort
 com.apulbere.algorithms.sort.MergeSortOnSpaceComplexity
-com.apulbere.algorithms.sort.QuickSort
-com.apulbere.algorithms.sort.QuickSortMiddlePivot
-com.apulbere.algorithms.sort.QuickSortSedgewick
+com.apulbere.algorithms.sort.QuickSortLomutoPartition
+com.apulbere.algorithms.sort.QuickSortLomutoPartitionMiddlePivot
+com.apulbere.algorithms.sort.QuickSortHoarePartition
 com.apulbere.algorithms.sort.InsertSort
 com.apulbere.algorithms.sort.SelectionSort

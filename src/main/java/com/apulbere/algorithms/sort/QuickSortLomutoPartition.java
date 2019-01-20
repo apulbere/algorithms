@@ -3,7 +3,7 @@ package com.apulbere.algorithms.sort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuickSort<T extends Comparable<T>> implements Sort<T> {
+public class QuickSortLomutoPartition<T extends Comparable<T>> implements Sort<T> {
 
     /**
      *
