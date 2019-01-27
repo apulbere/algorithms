@@ -26,32 +26,26 @@ public class AVLTree<T extends Comparable<T>> {
             node.right = insert(node.right, value);
         }
         node.height = max(height(node.left), height(node.right)) + 1;
-        int balance = findBalanceFactor(node);
-
-        // Left Left case
-        if (balance > 1 && value.compareTo(node.left.value) < 0)
-            return rotateRight(node);
-
-        // Right Right case
-        if (balance < -1 && value.compareTo(node.right.value) > 0)
-            return rotateLeft(node);
-
-        // Left Right case
-        if (balance > 1 && value.compareTo(node.left.value) > 0) {
-            node.left = rotateLeft(node.left);
-            return rotateRight(node);
-        }
-
-        // Right Left case
-        if (balance < -1 && value.compareTo(node.right.value) < 0) {
-            node.right = rotateRight(node.right);
-            return rotateLeft(node);
-        }
-
-        return node;
+        return balance(node);
     }
 
-    AVLNode<T> rotateLeft(AVLNode<T> x) {
+    private AVLNode<T> balance(AVLNode<T> x) {
+        int balance = findBalanceFactor(x);
+        if (balance < -1) {
+            if (findBalanceFactor(x.right) > 0) {
+                x.right = rotateRight(x.right);
+            }
+            x = rotateLeft(x);
+        } else if (balance > 1) {
+            if (findBalanceFactor(x.left) < 0) {
+                x.left = rotateLeft(x.left);
+            }
+            x = rotateRight(x);
+        }
+        return x;
+    }
+
+    private AVLNode<T> rotateLeft(AVLNode<T> x) {
         AVLNode<T> y = x.right;
         AVLNode<T> T2 = y.left;
 
@@ -63,7 +57,7 @@ public class AVLTree<T extends Comparable<T>> {
         return y;
     }
 
-    AVLNode<T> rotateRight(AVLNode<T> y) {
+    private AVLNode<T> rotateRight(AVLNode<T> y) {
         AVLNode<T> x = y.left;
         AVLNode<T> T2 = x.right;
 
@@ -80,7 +74,7 @@ public class AVLTree<T extends Comparable<T>> {
     }
 
     int height(AVLNode node) {
-        return node != null ? node.height : 0;
+        return node != null ? node.height : -1;
     }
 
     List<T> inorder() {
