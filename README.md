@@ -9,7 +9,7 @@
 * [hash map](src/main/java/com/apulbere/algorithms/HashMapWithLinearProbing.java)
 * [binary tree](src/main/java/com/apulbere/algorithms/tree/BinaryTree.java)
 * [binary search tree](src/main/java/com/apulbere/algorithms/tree/BinarySearchTree.java)
-* [AVL tree](csrc/main/java/com/apulbere/algorithms/tree/AVLTree.java)
+* [AVL tree](src/main/java/com/apulbere/algorithms/tree/AVLTree.java)
 * [heap](src/main/java/com/apulbere/algorithms/Heap.java)
 
 ### Sorting
