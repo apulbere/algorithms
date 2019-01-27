@@ -79,7 +79,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     *         Node<T> temp = head;
+     *         AVLNode<T> temp = head;
      *         while (temp != null) {
      *             //use temp.data
      *             temp = temp.next;
