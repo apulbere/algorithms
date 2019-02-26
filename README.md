@@ -20,3 +20,7 @@
 * [quick sort using middle index as pivot](src/main/java/com/apulbere/algorithms/sort/QuickSortLomutoPartitionMiddlePivot.java)
 * [insert sort](src/main/java/com/apulbere/algorithms/sort/InsertSort.java)
 * [selection sort](src/main/java/com/apulbere/algorithms/sort/SelectionSort.java)
+
+### Graphs
+* [adjacency list representation](src/main/java/com/apulbere/algorithms/graph/AdjacencyListGraph.java)
+* [adjacency matrix representation](src/main/java/com/apulbere/algorithms/graph/AdjacencyMatrixGraph.java)
