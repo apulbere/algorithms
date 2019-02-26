@@ -33,7 +33,7 @@ public class AdjacencyListGraph<V> {
         return result;
     }
 
-    public Collection<V> breadthFirstSearch(V startVertex) {
+    public Collection<V> breadthFirstTraversal(V startVertex) {
         var stack = new LinkedList<V>();
         var result = new LinkedHashSet<V>();
         stack.push(startVertex);

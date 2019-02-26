@@ -23,3 +23,4 @@
 
 ### Graphs
 * [adjacency list representation](src/main/java/com/apulbere/algorithms/graph/AdjacencyListGraph.java)
+* [adjacency matrix representation](src/main/java/com/apulbere/algorithms/graph/AdjacencyMatrixGraph.java)

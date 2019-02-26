@@ -68,7 +68,7 @@ class AdjacencyListGraphTest {
             .addEdge("F", "G");
 
         var expectedTraversalResult = List.of("S", "A", "B", "C", "D", "E", "F", "G");
-        assertIterableEquals(expectedTraversalResult, graph.breadthFirstSearch("S"));
+        assertIterableEquals(expectedTraversalResult, graph.breadthFirstTraversal("S"));
     }
 
     /**
