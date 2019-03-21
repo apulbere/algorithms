@@ -99,8 +99,37 @@ class AdjacencyListWeightedGraphTest {
     }
 
     @Test
-    void dijkstraShortestPathFromToNotFound() {
+    void dijkstraShortestPathFromToCostNotFound() {
         var graph = new AdjacencyListWeightedGraph<>().addEdge("A", 2, "C");
         assertThrows(AdjacencyListWeightedGraph.PathNotFoundException.class, () -> graph.dijkstraShortestPathCost("A", "B"));
+    }
+
+    @Test
+    void dijkstraShortestPathFromTo() {
+        var graph = new AdjacencyListWeightedGraph<>()
+                .addEdge(0, 4, 1)
+                .addEdge(0, 8, 7)
+                .addEdge(1, 8, 2)
+                .addEdge(1, 11, 7)
+                .addEdge(7, 7, 8)
+                .addEdge(7, 1, 6)
+                .addEdge(2, 2, 8)
+                .addEdge(2, 7, 3)
+                .addEdge(2, 4, 5)
+                .addEdge(8, 6, 6)
+                .addEdge(6, 2, 5)
+                .addEdge(3, 14, 5)
+                .addEdge(3, 9, 4)
+                .addEdge(5, 10, 4);
+
+        assertEquals(new Path<>(4, List.of(0, 1)), graph.dijkstraShortestPath(0, 1));
+        assertEquals(new Path<>(14, List.of(0, 1, 2, 8)), graph.dijkstraShortestPath(0, 8));
+        assertEquals(new Path<>(16, List.of(8, 2, 5, 4)), graph.dijkstraShortestPath(8, 4));
+    }
+
+    @Test
+    void dijkstraShortestPathFromToNotFound() {
+        var graph = new AdjacencyListWeightedGraph<>().addEdge("A", 2, "C");
+        assertThrows(AdjacencyListWeightedGraph.PathNotFoundException.class, () -> graph.dijkstraShortestPath("A", "B"));
     }
 }

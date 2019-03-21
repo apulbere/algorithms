@@ -88,7 +88,35 @@ public class AdjacencyListWeightedGraph<V> {
         throw new PathNotFoundException();
     }
 
-    public static class PathNotFoundException extends RuntimeException {}
+    public Path<V> dijkstraShortestPath(V source, V dest) {
+        var priorityQueue = new PriorityQueue<Edge<V>>();
+        priorityQueue.add(new Edge<>(source, 0));
+        var distances = new HashMap<V, Integer>();
+        distances.put(source, 0);
+        var predecessors = new HashMap<V, V>();
+
+        while(!priorityQueue.isEmpty()) {
+            var minEdge = priorityQueue.poll();
+            if(minEdge.endNode.equals(dest)) {
+                break;
+            }
+            for(Edge<V> edge: adjacencyList.get(minEdge.endNode)) {
+                int newCost = minEdge.cost + edge.cost;
+                if(newCost < distances.getOrDefault(edge.endNode, Integer.MAX_VALUE)) {
+                    distances.put(edge.endNode, newCost);
+                    predecessors.put(edge.endNode, minEdge.endNode);
+                    priorityQueue.add(new Edge<>(edge.endNode, newCost));
+                }
+            }
+        }
+        var cost = distances.get(dest);
+        if(cost != null) {
+            return Path.create(dest, distances.get(dest), predecessors);
+        }
+        throw new PathNotFoundException();
+    }
+
+    static class PathNotFoundException extends RuntimeException {}
 
     @AllArgsConstructor
     private static class Edge<V> implements Comparable<Edge<V>> {

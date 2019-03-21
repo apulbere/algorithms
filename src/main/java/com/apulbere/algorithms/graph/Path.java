@@ -18,8 +18,8 @@ public class Path<V> {
 
     public static final Path EMPTY = new Path<>(0, emptyList());
 
-    static <V> Path<V> create(V node, Integer cost, Map<V, V> predecessors) {
-        var pathList = Stream.iterate(node, Objects::nonNull, predecessors::get).collect(addAlwaysFirstCollector());
+    static <V> Path<V> create(V destination, Integer cost, Map<V, V> predecessors) {
+        var pathList = Stream.iterate(destination, Objects::nonNull, predecessors::get).collect(addAlwaysFirstCollector());
         return new Path<>(cost, pathList);
     }
 
