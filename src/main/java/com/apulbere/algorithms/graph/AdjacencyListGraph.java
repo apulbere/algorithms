@@ -1,11 +1,8 @@
 package com.apulbere.algorithms.graph;
 
 import lombok.Getter;
-import lombok.Value;
 
 import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Stream;
 
 import static java.util.Collections.emptyList;
 
@@ -73,23 +70,6 @@ public class AdjacencyListGraph<V> {
         if(predecessors.get(destination) == null) {
             return Path.EMPTY;
         }
-
-        var pathList = Stream.iterate(destination, Objects::nonNull, predecessors::get)
-                .collect(addAlwaysFirstCollector());
-        return new Path<>(distances.get(destination), pathList);
-    }
-
-    private Collector<V, LinkedList<V>, LinkedList<V>> addAlwaysFirstCollector() {
-        return Collector.of(LinkedList::new,
-                LinkedList::addFirst,
-                (a, b) -> { throw new UnsupportedOperationException("parallel processing not supported"); });
-    }
-
-    @Value
-    public static class Path<V> {
-        private int distance;
-        private Collection<V> path;
-
-        public static final Path EMPTY = new Path<>(0, emptyList());
+        return Path.create(destination, distances.get(destination), predecessors);
     }
 }

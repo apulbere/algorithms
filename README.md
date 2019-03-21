@@ -24,3 +24,4 @@
 ### Graphs
 * [adjacency list representation](src/main/java/com/apulbere/algorithms/graph/AdjacencyListGraph.java)
 * [adjacency matrix representation](src/main/java/com/apulbere/algorithms/graph/AdjacencyMatrixGraph.java)
+* [dijkstra algorithm for shortest path with adjacency list](src/main/java/com/apulbere/algorithms/graph/AdjacencyListWeightedGraph.java)
