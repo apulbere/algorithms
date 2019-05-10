@@ -4,8 +4,9 @@ import lombok.*;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.function.Supplier;
-import java.util.stream.StreamSupport;
+import java.util.stream.Stream;
 
 @ToString
 @EqualsAndHashCode
@@ -71,11 +72,15 @@ public class SimpleLinkedList<T> implements Iterable<T> {
      * O(N)
      */
     public boolean contains(T value) {
-        return StreamSupport.stream(this.spliterator(), false).anyMatch(item -> item.equals(value));
+        return stream().anyMatch(n -> n.data.equals(value));
     }
 
     public long size() {
-        return StreamSupport.stream(this.spliterator(), false).count();
+        return stream().count();
+    }
+
+    private Stream<Node<T>> stream() {
+        return Stream.iterate(head, Objects::nonNull, Node::getNext);
     }
 
     /**
