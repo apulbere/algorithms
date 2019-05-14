@@ -1,13 +1,12 @@
-package com.apulbere.algorithms;
-
-import org.junit.jupiter.api.RepeatedTest;
-
-import java.util.Random;
-import java.util.stream.Stream;
+package com.apulbere.algorithms.structure;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.Random;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.RepeatedTest;
 
 class HashMapWithLinearProbingTest {
 

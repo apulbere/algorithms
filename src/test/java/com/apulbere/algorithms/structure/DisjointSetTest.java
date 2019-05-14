@@ -1,9 +1,12 @@
-package com.apulbere.algorithms.graph;
+package com.apulbere.algorithms.structure;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import java.util.Iterator;
+import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class DisjointSetTest {
 
@@ -30,10 +33,9 @@ class DisjointSetTest {
      * G3 = {e, g, j}
      * G4 = {h}
      */
-    @Test
-    void checkRelations() {
-        var disjointSet = new DisjointSet<Character>();
-
+    @ParameterizedTest
+    @MethodSource("disjointSetImpls")
+    void checkRelations(DisjointSet<Character> disjointSet) {
         disjointSet.union('a', 'b');
         disjointSet.union('b', 'd');
         disjointSet.union('c', 'f');
@@ -53,4 +55,7 @@ class DisjointSetTest {
         assertFalse(disjointSet.connected('e', 'i'));
     }
 
+    private static Iterator<DisjointSet<Character>> disjointSetImpls() {
+        return List.of(new DisjointSet<Character>(), new DisjointSetOptimized<Character>()).iterator();
+    }
 }

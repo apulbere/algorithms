@@ -1,15 +1,15 @@
-package com.apulbere.algorithms;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.Collections;
-import java.util.List;
+package com.apulbere.algorithms.structure;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import com.apulbere.algorithms.RandomNumbers;
+import java.util.Collections;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 class HeapTest {
 

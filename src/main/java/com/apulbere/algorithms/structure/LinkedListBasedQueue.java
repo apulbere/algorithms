@@ -1,4 +1,4 @@
-package com.apulbere.algorithms;
+package com.apulbere.algorithms.structure;
 
 import lombok.AllArgsConstructor;
 

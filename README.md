@@ -4,13 +4,15 @@
 
 
 ### Data Structures
-* [simple linked list](src/main/java/com/apulbere/algorithms/SimpleLinkedList.java)
-* [queue with linked list](src/main/java/com/apulbere/algorithms/LinkedListBasedQueue.java)
-* [hash map](src/main/java/com/apulbere/algorithms/HashMapWithLinearProbing.java)
+* [simple linked list](src/main/java/com/apulbere/algorithms/structure/SimpleLinkedList.java)
+* [queue with linked list](src/main/java/com/apulbere/algorithms/structure/LinkedListBasedQueue.java)
+* [hash map](src/main/java/com/apulbere/algorithms/structure/HashMapWithLinearProbing.java)
 * [binary tree](src/main/java/com/apulbere/algorithms/tree/BinaryTree.java)
 * [binary search tree](src/main/java/com/apulbere/algorithms/tree/BinarySearchTree.java)
 * [AVL tree](src/main/java/com/apulbere/algorithms/tree/AVLTree.java)
-* [heap](src/main/java/com/apulbere/algorithms/Heap.java)
+* [heap](src/main/java/com/apulbere/algorithms/structure/Heap.java)
+* [disjoint-set / union-find](src/main/java/com/apulbere/algorithms/structure/DisjointSet.java)
+* [disjoint-set / union-find with path compression](src/main/java/com/apulbere/algorithms/structure/DisjointSetOptimized.java)
 
 ### Sorting
 * [merge sort with O(n log n) space complexity](src/main/java/com/apulbere/algorithms/sort/MergeSort.java)
