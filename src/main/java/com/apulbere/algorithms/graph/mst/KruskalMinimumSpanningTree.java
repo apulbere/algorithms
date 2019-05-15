@@ -1,9 +1,9 @@
 package com.apulbere.algorithms.graph.mst;
 
 import com.apulbere.algorithms.graph.BasicAdjacencyListWeightedGraph;
-import com.apulbere.algorithms.graph.DisjointSet;
 import com.apulbere.algorithms.graph.Edge;
 import com.apulbere.algorithms.graph.Graph;
+import com.apulbere.algorithms.structure.DisjointSetOptimized;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
@@ -19,7 +19,7 @@ public class KruskalMinimumSpanningTree<V, C extends Number & Comparable<C>> imp
     public Graph<V, C> find(Graph<V, C> graph) {
         var edges = new PriorityQueue<Edge<V, C>>(Comparator.comparing(Edge::getCost));
             edges.addAll(graph.getEdges());
-        var disjointSet = new DisjointSet<V>();
+        var disjointSet = new DisjointSetOptimized<V>();
         var mstEdges = new LinkedList<Edge<V, C>>();
 
         while(!edges.isEmpty()) {

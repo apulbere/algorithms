@@ -1,14 +1,16 @@
-package com.apulbere.algorithms;
+package com.apulbere.algorithms.structure;
 
-import com.apulbere.algorithms.SimpleLinkedList.Node;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.apulbere.algorithms.structure.SimpleLinkedList.Node;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class SimpleLinkedListTest {
 

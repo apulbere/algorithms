@@ -6,14 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.apulbere.algorithms.graph.BasicAdjacencyListWeightedGraph;
 import com.apulbere.algorithms.graph.Edge;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class KruskalMinimumSpanningTreeTest {
+class PrimMinimumSpanningTreeTest {
 
     @Test
-    @DisplayName("Kruskal's minimum spanning tree")
+    @DisplayName("Prim's minimum spanning tree")
     void mst1() {
         var graph = new BasicAdjacencyListWeightedGraph<Character, Integer>()
                 .addEdge('A', 3, 'B')
@@ -22,23 +21,14 @@ class KruskalMinimumSpanningTreeTest {
                 .addEdge('B', 1, 'C')
                 .addEdge('C', 5, 'D');
 
-        var mst = new KruskalMinimumSpanningTree<Character, Integer>().find(graph);
+        var mst = new PrimMinimumSpanningTree<Character, Integer>().find(graph);
 
         assertThat(mst.getEdges(), containsInAnyOrder(
                 new Edge<>('A', 2, 'C'),
                 new Edge<>('B', 1, 'C'),
                 new Edge<>('B', 4, 'D')));
 
-        assertEquals(7, mst.getEdges().stream().map(Edge::getCost).reduce(0, Integer::sum));
-    }
-
-    @Test
-    @DisplayName("Kruskal's minimum spanning tree for null graph")
-    void mst2() {
-        var graph = new BasicAdjacencyListWeightedGraph<Character, Integer>();
-        var mst = new KruskalMinimumSpanningTree<Character, Integer>().find(graph);
-
-        assertEquals(List.of(), mst.getEdges());
+        assertEquals(7, mst.stream().map(Edge::getCost).reduce(0, Integer::sum));
     }
 
     /**
@@ -46,7 +36,7 @@ class KruskalMinimumSpanningTreeTest {
      * expected: https://www.geeksforgeeks.org/wp-content/uploads/fig8new.jpeg
      */
     @Test
-    @DisplayName("Kruskal's minimum spanning tree 2")
+    @DisplayName("Prim's minimum spanning tree 2")
     void mst3() {
         var graph = new BasicAdjacencyListWeightedGraph<Integer, Integer>()
                 .addEdge(0, 4, 1)
@@ -64,7 +54,7 @@ class KruskalMinimumSpanningTreeTest {
                 .addEdge(3, 9, 4)
                 .addEdge(5, 10, 4);
 
-        var mst = new KruskalMinimumSpanningTree<Integer, Integer>().find(graph);
+        var mst = new PrimMinimumSpanningTree<Integer, Integer>().find(graph);
 
         assertThat(mst.getEdges(), containsInAnyOrder(
                 new Edge<>(0, 4, 1),

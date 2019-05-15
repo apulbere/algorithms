@@ -1,8 +1,8 @@
-package com.apulbere.algorithms;
-
-import org.junit.jupiter.api.Test;
+package com.apulbere.algorithms.structure;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 class LinkedListBasedQueueTest {
 

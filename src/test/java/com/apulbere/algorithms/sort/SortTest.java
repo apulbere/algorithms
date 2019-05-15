@@ -1,7 +1,7 @@
 package com.apulbere.algorithms.sort;
 
 import com.apulbere.algorithms.RandomNumbers;
-import com.apulbere.algorithms.SimpleLinkedList;
+import com.apulbere.algorithms.structure.SimpleLinkedList;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
