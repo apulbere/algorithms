@@ -28,7 +28,7 @@ class PrimMinimumSpanningTreeTest {
                 new Edge<>('B', 1, 'C'),
                 new Edge<>('B', 4, 'D')));
 
-        assertEquals(7, mst.getEdges().stream().map(Edge::getCost).reduce(0, Integer::sum));
+        assertEquals(7, mst.stream().map(Edge::getCost).reduce(0, Integer::sum));
     }
 
     /**
@@ -66,6 +66,6 @@ class PrimMinimumSpanningTreeTest {
                 new Edge<>(2, 7, 3),
                 new Edge<>(3, 9, 4)));
 
-        assertEquals(37, mst.getEdges().stream().map(Edge::getCost).reduce(0, Integer::sum));
+        assertEquals(37, mst.stream().map(Edge::getCost).reduce(0, Integer::sum));
     }
 }

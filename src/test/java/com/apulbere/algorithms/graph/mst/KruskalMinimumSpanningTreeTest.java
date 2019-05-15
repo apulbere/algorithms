@@ -76,6 +76,6 @@ class KruskalMinimumSpanningTreeTest {
                 new Edge<>(2, 7, 3),
                 new Edge<>(3, 9, 4)));
 
-        assertEquals(37, mst.getEdges().stream().map(Edge::getCost).reduce(0, Integer::sum));
+        assertEquals(37, mst.stream().map(Edge::getCost).reduce(0, Integer::sum));
     }
 }

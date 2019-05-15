@@ -20,6 +20,6 @@ public class Edge<T, V extends Number & Comparable<V>> {
         } else if(vertex == dest) {
             return source;
         }
-        throw new IllegalArgumentException("given vertex does not belong to edge");
+        throw new IllegalArgumentException(vertex + " vertex does not belong to edge " + toString());
     }
 }
