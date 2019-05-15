@@ -1,20 +1,15 @@
 package com.apulbere.algorithms.graph.mst;
 
-import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.mapping;
-import static java.util.stream.Collectors.toCollection;
-
 import com.apulbere.algorithms.graph.BasicAdjacencyListWeightedGraph;
 import com.apulbere.algorithms.graph.Edge;
 import com.apulbere.algorithms.graph.Graph;
+
 import java.util.AbstractMap.SimpleEntry;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
+
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.*;
 
 public class PrimMinimumSpanningTree<V, C extends Number & Comparable<C>> implements MinimumSpanningTree<V, C> {
 
@@ -33,8 +28,8 @@ public class PrimMinimumSpanningTree<V, C extends Number & Comparable<C>> implem
         var pq = new PriorityQueue<Edge<V, C>>(comparing(Edge::getCost));
         var visited = new HashSet<V>();
 
-        for(V vertex: adjacencyMap.keySet()) {
-            scan(visited, pq, adjacencyMap.get(vertex), vertex);
+        for(var entry: adjacencyMap.entrySet()) {
+            scan(visited, pq, entry.getValue(), entry.getKey());
             while(!pq.isEmpty()) {
                 var minEdge = pq.poll();
 
