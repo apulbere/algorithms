@@ -11,10 +11,16 @@ import java.util.stream.Stream;
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor
 public class SimpleLinkedList<T> implements Iterable<T> {
     @Getter
     private Node<T> head;
+
+    private long size;
+
+    public SimpleLinkedList(Node<T> head) {
+        this.head = head;
+        this.size = stream().count();
+    }
 
     public SimpleLinkedList(Collection<T> values) {
         values.forEach(this::append);
@@ -22,12 +28,14 @@ public class SimpleLinkedList<T> implements Iterable<T> {
 
     public SimpleLinkedList(SimpleLinkedList<T> linkedList) {
         head = linkedList.head.copy();
+        size = linkedList.size;
     }
 
     /**
      * O(N)
      */
     public void append(T value) {
+        size++;
         if(head == null) {
             head = new Node<>(value);
         } else {
@@ -43,6 +51,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
      * O(1)
      */
     public void prepend(T value) {
+        size++;
         head = new Node<>(value, head);
     }
 
@@ -50,8 +59,10 @@ public class SimpleLinkedList<T> implements Iterable<T> {
      * O(n)
      *
      * O(1) only when you have a reference to the node you want to remove
+     *
+     * returns true if value is found and deleted
      */
-    public void delete(T value) {
+    public boolean delete(T value) {
         if(!isEmpty()) {
             Node<T> current = head;
             Node<T> prev = null;
@@ -59,12 +70,18 @@ public class SimpleLinkedList<T> implements Iterable<T> {
                 prev = current;
                 current = current.next;
             }
+
             if(prev == null) {
                 head = null;
             } else {
                 prev.next = current != null ? current.next : null;
             }
+            if(current != null && current.data.equals(value)) {
+                size--;
+                return true;
+            }
         }
+        return false;
     }
 
     /**
@@ -76,7 +93,7 @@ public class SimpleLinkedList<T> implements Iterable<T> {
     }
 
     public long size() {
-        return stream().count();
+        return size;
     }
 
     private Stream<Node<T>> stream() {

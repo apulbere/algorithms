@@ -61,14 +61,28 @@ class SimpleLinkedListTest {
 
     @Test
     void delete() {
-        var linkedList = new SimpleLinkedList<String>(List.of("Y", "P"));
-        linkedList.delete("P");
-        linkedList.delete("U");
+        var linkedList = new SimpleLinkedList<>(List.of("Y", "P"));
+        assertTrue(linkedList.delete("P"));
+        assertEquals(1, linkedList.size());
+
+        assertFalse(linkedList.delete("U"));
+        assertEquals(1, linkedList.size());
+
         assertEquals(List.of("Y"), linkedList.toCollection(ArrayList::new));
 
-        var secondLinkedList = new SimpleLinkedList<String>(List.of("Y"));
-        secondLinkedList.delete("Y");
-        linkedList.delete("OPP");
+        assertTrue(linkedList.delete("Y"));
+        assertEquals(0, linkedList.size());
+
+        assertFalse(linkedList.delete("Y"));
+        assertEquals(0, linkedList.size());
+
+        var secondLinkedList = new SimpleLinkedList<>(List.of("Y"));
+        assertEquals(1, secondLinkedList.size());
+        assertTrue(secondLinkedList.delete("Y"));
+        assertEquals(0, linkedList.size());
+
+        assertFalse(linkedList.delete("OPP"));
+
         assertEquals(Collections.emptyList(), Collections.emptyList());
     }
 
