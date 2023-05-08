@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - openjdk12
+  - openjdk20
 sudo: false
 cache:
   directories:
