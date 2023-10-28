@@ -1,7 +1,5 @@
 ## Algorithms
-[![Build Status](https://travis-ci.org/apulbere/algorithms.svg?branch=master)](https://travis-ci.org/apulbere/algorithms)
-[![Coverage Status](https://coveralls.io/repos/github/apulbere/algorithms/badge.svg?branch=master)](https://coveralls.io/github/apulbere/algorithms?branch=master)
-
+Data structures and algorithms in Java with test
 
 ### Data Structures
 * [simple linked list](src/main/java/com/apulbere/algorithms/structure/SimpleLinkedList.java)

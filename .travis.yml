@@ -1,9 +1,0 @@
-language: java
-jdk:
-  - openjdk19
-sudo: false
-cache:
-  directories:
-    - $HOME/.gradle
-after_success:
-  - ./gradlew jacocoTestReport coveralls
